@@ -5,10 +5,10 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SlownikiService {
-  private urlget = 'http://localhost/wkpm/slowniki.php';
-  private urladd = 'http://localhost/wkpm/slownikAdd.php';
-  private urldel = 'http://localhost/wkpm/slownikDel.php';
-  private urledit = 'http://localhost/wkpm/slownikEdit.php';
+  private urlget = 'http://localhost/wkpm/KosztProcApi/slowniki.php';
+  private urladd = 'http://localhost/wkpm/KosztProcApi/slownikAdd.php';
+  private urldel = 'http://localhost/wkpm/KosztProcApi/slownikDel.php';
+  private urledit = 'http://localhost/wkpm/KosztProcApi/slownikEdit.php';
 
   constructor(private httpClient: HttpClient) { }
 

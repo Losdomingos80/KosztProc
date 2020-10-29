@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MagazynService {
 
-  private urlget = 'http://localhost/wkpm/magazyn.php';
-  private urladd = 'http://localhost/wkpm/magazynAdd.php';
+  private urlget = 'http://localhost/wkpm/KosztProcApi/magazyn.php';
+  private urladd = 'http://localhost/wkpm/KosztProcApi/magazynAdd.php';
 
   constructor(private httpClient: HttpClient) { }
 
