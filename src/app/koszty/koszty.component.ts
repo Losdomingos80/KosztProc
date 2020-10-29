@@ -2,10 +2,16 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
 import { MagazynComponent } from '../magazyn/magazyn.component'; 
+import {MatTableDataSource} from '@angular/material/table';
+
+import { KosztyService } from '../services/koszty.service'; 
+
 
 export interface DialogData {
-  id: any;
-  nazwa: any;
+  idProcedury: any;
+  nazwaProcedury: any;
+  idOddzialu: any;
+  
 }
 
 @Component({
@@ -14,14 +20,32 @@ export interface DialogData {
   styleUrls: ['./koszty.component.css']
 })
 export class KosztyComponent implements OnInit {
+  
+  displayedColumns: string[] = ['identyfikator', 'nazwa', 'cenaBrutto', 'jednostkaMiary', 'iloscwJednostce', 'ilosc', 'akcje'];
   procedura: any;
   idprocedury: any;
-  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<KosztyComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+  pokKoszty: any;
+
+  constructor(private koszty: KosztyService,public dialog: MatDialog, public dialogRef: MatDialogRef<KosztyComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit(): void {
-    this.procedura = this.data.nazwa;
-    this.idprocedury = this.data.id;
+    console.log(this.data);
+    this.pobierzKoszty();
+  }
 
+  pobierzKoszty(){
+    this.koszty.getKoszty(this.data.idProcedury, this.data.idOddzialu)
+    .subscribe(response => {
+      this.pokKoszty = response;
+      console.log(this.pokKoszty);
+      this.pokKoszty = new MatTableDataSource(this.pokKoszty);
+
+  });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.pokKoszty.filter = filterValue.trim().toLowerCase();
   }
 
   onNoClick(): void {
@@ -30,6 +54,7 @@ export class KosztyComponent implements OnInit {
 
   addKoszt(){
     const dialogRef = this.dialog.open(MagazynComponent, {
+      data: this.data,
       height: '80%',
       width: '70%'
     });

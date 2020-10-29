@@ -6,6 +6,7 @@ import { MagazynService } from '../services/magazyn.service';
 
 export interface DialogData {
   idProcedury: any;
+  nazwaProcedury: any;
   idOddzialu: any;
 }
 
@@ -51,7 +52,7 @@ export class MagazynComponent implements OnInit {
   }
 
   zapiszKoszt(idMaterialu: any) {
-    this.mag.addMagazyn(this.data.idProcedury, this.data.idProcedury, idMaterialu, this.ilosc)
+    this.mag.addMagazyn(this.data.idProcedury, this.data.idOddzialu, idMaterialu, this.ilosc)
       .subscribe(response => {
         this.ilosc = '';
 

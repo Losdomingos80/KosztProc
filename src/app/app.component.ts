@@ -21,6 +21,7 @@ export class AppComponent {
   pokazSlowniki: any;
   oddzial: any;
   procedury: any;
+  idOddzialu: any;
 
   constructor(public matDialog: MatDialog, private proc:ProceduryService) {
     this.start();
@@ -28,6 +29,7 @@ export class AppComponent {
 
   start() {
     this.oddzial = '';
+    this.idOddzialu = '';
   }
 
   pobierzProcedury() {
@@ -44,13 +46,13 @@ export class AppComponent {
     this.procedury.filter = filterValue.trim().toLowerCase();
   }
 
-  koszty(id: any, nazwa: any){
+  koszty(idProcedury: any, nazwaProcedury: any){
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.width = "70%";
-    dialogConfig.data = { id: id, nazwa: nazwa };
+    dialogConfig.data = { idProcedury: idProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(KosztyComponent, dialogConfig);
 
@@ -74,6 +76,7 @@ export class AppComponent {
     modalDialog.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.oddzial = "Endoskopia";
+      this.idOddzialu = 1;
       this.pobierzProcedury();
       
     });
