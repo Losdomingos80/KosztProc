@@ -1,0 +1,81 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span>Magazyn</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button (click)="onNoClick()">
+            <mat-icon mat-list-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+  </h4>
+  <BR>
+
+    <mat-form-field>
+        <mat-label>Filtr</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="do wyszukania" #input>
+      </mat-form-field>
+  
+    <table mat-table [dataSource]="magazyn" class="mat-elevation-z8">
+  
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="identyfikator">
+          <th mat-header-cell *matHeaderCellDef> Identyfikator. </th>
+          <td mat-cell *matCellDef="let element"> {{element.identyfikator}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="nazwa">
+          <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+          <td mat-cell *matCellDef="let element"> {{element.nazwa}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="cenaBrutto">
+          <th mat-header-cell *matHeaderCellDef> Cena Brutto </th>
+          <td mat-cell *matCellDef="let element"> {{element.cenaBrutto}} </td>
+        </ng-container>
+         <!-- Name Column -->
+         <ng-container matColumnDef="jednostkaMiary">
+            <th mat-header-cell *matHeaderCellDef> J.M. </th>
+            <td mat-cell *matCellDef="let element"> {{element.jednostkaMiary}} </td>
+          </ng-container>
+           <!-- Name Column -->
+        <ng-container matColumnDef="iloscwJednostce">
+            <th mat-header-cell *matHeaderCellDef> Ilość w Jednostce </th>
+            <td mat-cell *matCellDef="let element"> {{element.iloscwJednostce}} </td>
+          </ng-container>
+          <ng-container matColumnDef="ilosc">
+            <th mat-header-cell *matHeaderCellDef> Ilość Zużyta </th>
+            <td mat-cell *matCellDef="let element"> 
+                <form class="inputt">
+                    <mat-form-field class="inputt">
+                      <mat-label>Użyta ilość</mat-label>
+                      <input matInput (keyup)="onKey($event)">
+                    </mat-form-field>
+                </form>    
+            </td>
+          </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="akcje">
+          <th mat-header-cell *matHeaderCellDef> Akcje </th>
+          <td mat-cell *matCellDef="let element"> 
+
+            &nbsp;&nbsp;&nbsp; 
+            <button (click)="zapiszKoszt(element.id)" mat-mini-fab color="accent" aria-label="Example icon button with a delete icon">
+                <mat-icon>add</mat-icon>
+              </button>
+
+            
+          
+              
+  
+          </td>
+        </ng-container>
+      
+              
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+

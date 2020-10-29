@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Słownik</h1>
+<div mat-dialog-content>
+
+<h2>Podaj nazwę słownika</h2>
+<input class="example-full-width" (keyup)="onKey($event)">
+       
+</div>
+<BR><BR>
+<div mat-dialog-actions>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button mat-button (click)="onOkClick()" cdkFocusInitial>Zapisz</button>
+</div>

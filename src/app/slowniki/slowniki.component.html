@@ -1,0 +1,58 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span>Słowniki</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button (click)="openDialog()">
+            <mat-icon mat-list-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="closeModal()">
+            <mat-icon mat-list-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+  </h4>
+  <BR>
+    <mat-form-field>
+        <mat-label>Filtr</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="do wyszukania" #input>
+      </mat-form-field>
+
+    <table mat-table [dataSource]="slowniki" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="nazwa">
+          <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+          <td mat-cell *matCellDef="let element"> {{element.nazwa}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="akcje">
+          <th mat-header-cell *matHeaderCellDef> Akcje </th>
+          <td mat-cell *matCellDef="let element"> &nbsp;&nbsp;&nbsp; 
+            <button (click)="openEditDialog(element.id, element.nazwa)" mat-mini-fab color="accent" aria-label="Example icon button with a delete icon">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button (click)="delSlownik(element.id)" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+          </td>
+        </ng-container>
+      
+              
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+      
+      
+
+    
