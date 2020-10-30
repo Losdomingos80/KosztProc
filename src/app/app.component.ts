@@ -51,6 +51,7 @@ export class AppComponent {
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
+    dialogConfig.height = "80%";
     dialogConfig.width = "70%";
     dialogConfig.data = { idProcedury: idProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
     // https://material.angular.io/components/dialog/overview

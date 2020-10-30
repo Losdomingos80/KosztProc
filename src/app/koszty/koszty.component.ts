@@ -21,7 +21,7 @@ export interface DialogData {
 })
 export class KosztyComponent implements OnInit {
   
-  displayedColumns: string[] = ['identyfikator', 'nazwa', 'cenaBrutto', 'jednostkaMiary', 'iloscwJednostce', 'ilosc', 'akcje'];
+  displayedColumns: string[] = ['identyfikator', 'nazwa', 'typ', 'wspolczynnik', 'jednostkaMiary', 'iloscJednostkowa', 'cenaBrutto', 'wklad','akcje'];
   procedura: any;
   idprocedury: any;
   pokKoszty: any;
@@ -61,7 +61,7 @@ export class KosztyComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-  
+        this.pobierzKoszty();
     });
   }
 
