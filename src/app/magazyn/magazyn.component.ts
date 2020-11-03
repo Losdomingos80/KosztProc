@@ -6,6 +6,7 @@ import { MagazynService } from '../services/magazyn.service';
 
 export interface DialogData {
   idProcedury: any;
+  kodProcedury: any;
   nazwaProcedury: any;
   idOddzialu: any;
 }
@@ -17,7 +18,7 @@ export interface DialogData {
 })
 export class MagazynComponent implements OnInit {
 
-  displayedColumns: string[] = ['identyfikator', 'nazwa', 'cenaBrutto', 'jednostkaMiary', 'iloscwJednostce', 'ilosc', 'akcje'];
+  displayedColumns: string[] = ['identyfikator', 'nazwa', 'cenaBrutto', 'jednostkaMiary', 'iloscwJednostce', 'akcje'];
   magazyn: any;
   ilosc: any;
 
@@ -27,6 +28,7 @@ export class MagazynComponent implements OnInit {
     this.magazyn = '';
     this.ilosc = '';
     this.pobierzMagazyn();
+    console.log(this.data);
   }
 
   onNoClick(): void {
@@ -43,20 +45,33 @@ export class MagazynComponent implements OnInit {
   }
 
   pobierzMagazyn() {
-    this.mag.getMagazyn()
+    this.mag.getMagazyn(this.data.idProcedury, this.data.idOddzialu)
       .subscribe(response => {
           this.magazyn = response;
           this.magazyn = new MatTableDataSource(this.magazyn);
-
+          
       });
   }
 
   zapiszKoszt(idMaterialu: any) {
-    this.mag.addMagazyn(this.data.idProcedury, this.data.idOddzialu, idMaterialu, this.ilosc)
+    this.ilosc = '';
+    this.ilosc = prompt("Podaj ilość", "");
+
+    if(this.ilosc){
+
+      this.mag.addMagazyn(this.data.idProcedury, this.data.idOddzialu, idMaterialu, this.ilosc)
       .subscribe(response => {
         this.ilosc = '';
+        this.dialogRef.close();
 
       });
+
+    }
+    else {
+      alert("Wpisano błędną ilość! Wartość nie może być pusta!")
+    }
+ 
+    
   }
 
 }

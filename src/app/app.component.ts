@@ -22,6 +22,7 @@ export class AppComponent {
   oddzial: any;
   procedury: any;
   idOddzialu: any;
+  wybor: any;
 
   constructor(public matDialog: MatDialog, private proc:ProceduryService) {
     this.start();
@@ -30,10 +31,37 @@ export class AppComponent {
   start() {
     this.oddzial = '';
     this.idOddzialu = '';
+    this.wybor = "przypisane";
   }
 
+  addProc(idProcedury: any){
+    this.proc.addPrzypisanie(idProcedury, this.idOddzialu)
+    .subscribe(response => {
+      this.pobierzProcedury();
+
+    });
+  }
+
+  delProc(idProcedury: any){
+    this.proc.delPrzypisanie(idProcedury, this.idOddzialu)
+    .subscribe(response => {
+      this.pobierzProcedury();
+
+    });
+  }
+
+  rodzajPrzypisane(){
+      this.wybor = "przypisane";
+      this.pobierzProcedury();
+  }
+
+  rodzajNiePrzypisane(){
+    this.wybor = "nie przypisane";
+    this.pobierzProcedury();
+}
+
   pobierzProcedury() {
-    this.proc.getProcedury()
+    this.proc.getProcedury(this.wybor, this.idOddzialu)
       .subscribe(response => {
           this.procedury = response;
           this.procedury = new MatTableDataSource(this.procedury);
@@ -46,14 +74,14 @@ export class AppComponent {
     this.procedury.filter = filterValue.trim().toLowerCase();
   }
 
-  koszty(idProcedury: any, nazwaProcedury: any){
+  koszty(idProcedury: any, nazwaProcedury: any, kodProcedury: any){
     const dialogConfig = new MatDialogConfig();
     // The user can't close the dialog by clicking outside its body
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "80%";
     dialogConfig.width = "70%";
-    dialogConfig.data = { idProcedury: idProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
+    dialogConfig.data = { idProcedury: idProcedury, kodProcedury: kodProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(KosztyComponent, dialogConfig);
 

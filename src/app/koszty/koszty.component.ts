@@ -9,6 +9,7 @@ import { KosztyService } from '../services/koszty.service';
 
 export interface DialogData {
   idProcedury: any;
+  kodProcedury: any;
   nazwaProcedury: any;
   idOddzialu: any;
   

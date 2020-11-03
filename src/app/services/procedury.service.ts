@@ -13,10 +13,26 @@ export class ProceduryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProcedury(){
+  getProcedury(wybor: any, idOddzialu: any){
+    const postData = new FormData();
+    postData.append('wybor', wybor);
+    postData.append('idOddzialu', idOddzialu);
+    return this.httpClient.post(this.urlget, postData);
 
-    return this.httpClient.get(this.urlget);
+  }
 
+  addPrzypisanie(idProcedury: any, idOddzialu: any){
+    const postData = new FormData();
+    postData.append('idProcedury', idProcedury);
+    postData.append('idOddzialu', idOddzialu);
+    return this.httpClient.post(this.urladd, postData);
+  }
+
+  delPrzypisanie(idProcedury: any, idOddzialu: any){
+    const postData = new FormData();
+    postData.append('idProcedury', idProcedury);
+    postData.append('idOddzialu', idOddzialu);
+    return this.httpClient.post(this.urldel, postData);
   }
 
 }

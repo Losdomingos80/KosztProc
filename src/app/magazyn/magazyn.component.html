@@ -45,18 +45,7 @@
             <th mat-header-cell *matHeaderCellDef> Ilość w Jednostce </th>
             <td mat-cell *matCellDef="let element"> {{element.iloscwJednostce}} </td>
           </ng-container>
-          <ng-container matColumnDef="ilosc">
-            <th mat-header-cell *matHeaderCellDef> Ilość Zużyta </th>
-            <td mat-cell *matCellDef="let element"> 
-                <form class="inputt">
-                    <mat-form-field class="inputt">
-                      <mat-label>Użyta ilość</mat-label>
-                      <input matInput (keyup)="onKey($event)">
-                    </mat-form-field>
-                </form>    
-            </td>
-          </ng-container>
-      
+                    
         <!-- Weight Column -->
         <ng-container matColumnDef="akcje">
           <th mat-header-cell *matHeaderCellDef> Akcje </th>

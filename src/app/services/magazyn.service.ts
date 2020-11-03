@@ -13,9 +13,11 @@ export class MagazynService {
   constructor(private httpClient: HttpClient) { }
 
 
-  getMagazyn(){
-
-    return this.httpClient.get(this.urlget);
+  getMagazyn(idProcedury: any, idOddzialu: any){
+    const postData = new FormData();
+    postData.append('idProcedury', idProcedury);
+    postData.append('idOddzialu', idOddzialu);
+    return this.httpClient.post(this.urlget, postData);
 
   }
 
