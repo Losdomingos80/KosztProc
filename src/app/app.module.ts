@@ -18,6 +18,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';  
 import {MatTableModule} from '@angular/material/table'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {MatBadgeModule} from '@angular/material/badge'; 
 
 
 import { SlownikiComponent as SlownikiComponent } from './slowniki/slowniki.component';
@@ -52,7 +54,9 @@ import { MagazynComponent } from './magazyn/magazyn.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatBadgeModule
 
   ],
   exports: [

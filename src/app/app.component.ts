@@ -9,6 +9,7 @@ import { KosztyComponent } from './koszty/koszty.component';
 import { ProceduryService } from './services/procedury.service';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,6 +17,11 @@ import { ProceduryService } from './services/procedury.service';
 })
 export class AppComponent {
 
+
+
+  tabelka: any;
+  
+  
   displayedColumns: string[] = ['id', 'kod', 'nazwa', 'akcje'];
   title = 'KosztProc';
   pokazSlowniki: any;
@@ -23,15 +29,26 @@ export class AppComponent {
   procedury: any;
   idOddzialu: any;
   wybor: any;
+  filterValue: any;
 
   constructor(public matDialog: MatDialog, private proc:ProceduryService) {
     this.start();
+  }
+
+  spiner(){
+    this.tabelka = false;
+  }
+
+  tabela(){
+    this.tabelka = true;
   }
 
   start() {
     this.oddzial = '';
     this.idOddzialu = '';
     this.wybor = "przypisane";
+    this.filterValue = '';
+    this.tabelka = true;
   }
 
   addProc(idProcedury: any){
@@ -43,11 +60,17 @@ export class AppComponent {
   }
 
   delProc(idProcedury: any){
-    this.proc.delPrzypisanie(idProcedury, this.idOddzialu)
-    .subscribe(response => {
-      this.pobierzProcedury();
 
-    });
+    if (confirm("Czy napewno usunąć tą pozycję?")) {
+      this.proc.delPrzypisanie(idProcedury, this.idOddzialu)
+      .subscribe(response => {
+        this.pobierzProcedury();
+  
+      });
+      } else {
+      
+    } 
+   
   }
 
   rodzajPrzypisane(){
@@ -61,17 +84,19 @@ export class AppComponent {
 }
 
   pobierzProcedury() {
+    this.spiner();
     this.proc.getProcedury(this.wybor, this.idOddzialu)
       .subscribe(response => {
           this.procedury = response;
           this.procedury = new MatTableDataSource(this.procedury);
-
+          this.procedury.filter = this.filterValue.trim().toLowerCase();
+          this.tabela();
       });
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.procedury.filter = filterValue.trim().toLowerCase();
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.procedury.filter = this.filterValue.trim().toLowerCase();
   }
 
   koszty(idProcedury: any, nazwaProcedury: any, kodProcedury: any){
