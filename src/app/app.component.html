@@ -82,18 +82,18 @@
       <!-- Name Column -->
       <ng-container matColumnDef="kod">
         <th mat-header-cell *matHeaderCellDef> Kod </th>
-        <td mat-cell *matCellDef="let element"> {{element.kod}} </td>
+        <td mat-cell *matCellDef="let element">&nbsp; {{element.kod}} </td>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="nazwa">
         <th mat-header-cell *matHeaderCellDef> Nazwa </th>
-        <td mat-cell *matCellDef="let element"> {{element.nazwa}} </td>
+        <td mat-cell *matCellDef="let element">&nbsp; {{element.nazwa}} </td>
       </ng-container>
     
       <!-- Weight Column -->
       <ng-container matColumnDef="akcje">
         <th mat-header-cell *matHeaderCellDef> Akcje </th>
-        <td mat-cell *matCellDef="let element"> &nbsp;&nbsp;&nbsp; 
+        <td mat-cell *matCellDef="let element">
           &nbsp; 
           <button *ngIf="wybor=='nie przypisane'" (click)="addProc(element.id)" mat-mini-fab color="accent">
               <mat-icon>add_task</mat-icon>

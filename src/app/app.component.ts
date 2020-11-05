@@ -49,6 +49,7 @@ export class AppComponent {
     this.wybor = "przypisane";
     this.filterValue = '';
     this.tabelka = true;
+    this.logowanie();
   }
 
   addProc(idProcedury: any){

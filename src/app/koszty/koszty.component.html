@@ -10,67 +10,108 @@
         </button>
     </mat-toolbar>
   </h4>
-  <BR>
+
     <mat-form-field>
         <mat-label>Filtr</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="do wyszukania" #input>
       </mat-form-field>
   
-    <table mat-table [dataSource]="pokKoszty" class="mat-elevation-z8">
-  
+      <div class="mat-elevation-z8">
+        <mat-table #table [dataSource]="pokKoszty">
+    
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
+    
         <!-- Position Column -->
         <ng-container matColumnDef="identyfikator">
-          <th mat-header-cell *matHeaderCellDef> Index materiału </th>
-          <td mat-cell *matCellDef="let element"> {{element.identyfikator}} </td>
+          <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+          
         </ng-container>
-      
+    
         <!-- Name Column -->
         <ng-container matColumnDef="nazwa">
-          <th mat-header-cell *matHeaderCellDef> Materiał (lek/sprzęt) </th>
-          <td mat-cell *matCellDef="let element"> {{element.nazwa}} </td>
+          <mat-header-cell *matHeaderCellDef>Nazwa</mat-header-cell>
+          
         </ng-container>
-        <!-- Name Column -->
-        <ng-container matColumnDef="typ">
-          <th mat-header-cell *matHeaderCellDef> Typ </th>
-          <td mat-cell *matCellDef="let element">  </td>
-        </ng-container>
-        <ng-container matColumnDef="wspolczynnik">
-            <th mat-header-cell *matHeaderCellDef> Współczynnik </th>
-            <!-- <td mat-cell *matCellDef="let element"> {{(element.iloscwJednostce/element.iloscJednostkowa)*element.iloscJednostkowa}} </td> -->
-            <td mat-cell *matCellDef="let element"> {{(element.iloscwJednostce/element.iloscJednostkowa)}} </td>
-          </ng-container>
-          <ng-container matColumnDef="jednostkaMiary">
-            <th mat-header-cell *matHeaderCellDef> JednostkaMiary </th>
-            <td mat-cell *matCellDef="let element"> {{element.jednostkaMiary}} </td>
-          </ng-container>
-          <ng-container matColumnDef="iloscJednostkowa">
-            <th mat-header-cell *matHeaderCellDef> Liczba M zuzyta na N proc. </th>
-            <!--  <td mat-cell *matCellDef="let element"> {{(element.iloscwJednostce/((element.iloscwJednostce/element.iloscJednostkowa)*element.iloscJednostkowa))*element.iloscJednostkowa}} </td> -->
-            <td mat-cell *matCellDef="let element"> {{(element.iloscwJednostce/((element.iloscwJednostce/element.iloscJednostkowa)*element.iloscJednostkowa))}} </td>
-          </ng-container>
-          <ng-container matColumnDef="cenaBrutto">
-            <th mat-header-cell *matHeaderCellDef> Cena jednostki </th>
-            <td mat-cell *matCellDef="let element"> {{element.cenaBrutto}} </td>
-          </ng-container>
-          <ng-container matColumnDef="wklad">
-            <th mat-header-cell *matHeaderCellDef> Wkład do kosztu jedn. </th>
-            <td mat-cell *matCellDef="let element"> {{element.cenaBrutto/(element.iloscwJednostce/element.iloscJednostkowa)}} </td>
-          </ng-container>
-      
+    
         <!-- Weight Column -->
-        <ng-container matColumnDef="akcje">
-          <th mat-header-cell *matHeaderCellDef> Akcje </th>
-          <td mat-cell *matCellDef="let element"> &nbsp;&nbsp;&nbsp; 
-
-              
-  
-          </td>
+        <ng-container matColumnDef="jednostkaMiary">
+          <mat-header-cell *matHeaderCellDef>Jm</mat-header-cell>
+          
         </ng-container>
-      
-              
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+    
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="iloscwJednostce">
+          <mat-header-cell *matHeaderCellDef>Ilosc w Jm</mat-header-cell>
+          
+        </ng-container>
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="iloscJednostkowa">
+          <mat-header-cell *matHeaderCellDef>Ilosc zużyta</mat-header-cell>
+         
+        </ng-container>
+        <ng-container matColumnDef="akcje">
+          <mat-header-cell *matHeaderCellDef>Akcje</mat-header-cell>
+          
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        
+      </mat-table>
+      <mat-table #table [dataSource]="pokKoszty">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="identyfikator">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.identyfikator}} </mat-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="nazwa">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.nazwa}} </mat-cell>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="jednostkaMiary">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.jednostkaMiary}} </mat-cell>
+        </ng-container>
+    
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="iloscwJednostce">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.iloscwJednostce}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="iloscJednostkowa">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.iloscJednostkowa}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="akcje">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+
+            <button (click)="editKoszt(element.id, element.iloscJednostkowa)" mat-mini-fab color="accent">
+              <mat-icon>edit</mat-icon>
+            </button>
+            &nbsp;
+            <button (click)="delKoszt(element.id)" mat-mini-fab color="accent">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          
+          
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns" [style.min-height]="0" ></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+    

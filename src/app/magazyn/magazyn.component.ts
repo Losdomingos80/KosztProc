@@ -21,14 +21,27 @@ export class MagazynComponent implements OnInit {
   displayedColumns: string[] = ['identyfikator', 'nazwa', 'cenaBrutto', 'jednostkaMiary', 'iloscwJednostce', 'akcje'];
   magazyn: any;
   ilosc: any;
+  tabelka: any;
+  filterValue: any;
+  
 
   constructor(private mag:MagazynService, public dialogRef: MatDialogRef<MagazynComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit(): void {
     this.magazyn = '';
     this.ilosc = '';
+    this.tabelka = true;
     this.pobierzMagazyn();
     console.log(this.data);
+    
+  }
+
+  spiner(){
+    this.tabelka = false;
+  }
+
+  tabela(){
+    this.tabelka = true;
   }
 
   onNoClick(): void {
@@ -40,16 +53,19 @@ export class MagazynComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.magazyn.filter = filterValue.trim().toLowerCase();
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.magazyn.filter = this.filterValue.trim().toLowerCase();
   }
 
   pobierzMagazyn() {
+    this.spiner();
     this.mag.getMagazyn(this.data.idProcedury, this.data.idOddzialu)
       .subscribe(response => {
           this.magazyn = response;
           this.magazyn = new MatTableDataSource(this.magazyn);
-          
+          this.filterValue = '';
+          this.tabela();
+          this.magazyn.filter = this.filterValue.trim().toLowerCase();
       });
   }
 

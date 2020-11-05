@@ -13,8 +13,11 @@
         <mat-label>Filtr</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="do wyszukania" #input>
       </mat-form-field>
+
+
+    <mat-spinner *ngIf="!tabelka" class="spiner" color="warn"></mat-spinner>
   
-    <table mat-table [dataSource]="magazyn" class="mat-elevation-z8">
+    <table *ngIf="tabelka" mat-table [dataSource]="magazyn" class="mat-elevation-z8">
   
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
@@ -27,31 +30,31 @@
       
         <!-- Name Column -->
         <ng-container matColumnDef="nazwa">
-          <th mat-header-cell *matHeaderCellDef> Nazwa </th>
-          <td mat-cell *matCellDef="let element"> {{element.nazwa}} </td>
+          <th mat-header-cell *matHeaderCellDef> &nbsp;Nazwa </th>
+          <td mat-cell *matCellDef="let element">&nbsp; {{element.nazwa}} </td>
         </ng-container>
         <!-- Name Column -->
         <ng-container matColumnDef="cenaBrutto">
-          <th mat-header-cell *matHeaderCellDef> Cena Brutto </th>
-          <td mat-cell *matCellDef="let element"> {{element.cenaBrutto}} </td>
+          <th mat-header-cell *matHeaderCellDef> &nbsp;Cena Brutto </th>
+          <td mat-cell *matCellDef="let element">&nbsp; {{element.cenaBrutto}} </td>
         </ng-container>
          <!-- Name Column -->
          <ng-container matColumnDef="jednostkaMiary">
-            <th mat-header-cell *matHeaderCellDef> J.M. </th>
-            <td mat-cell *matCellDef="let element"> {{element.jednostkaMiary}} </td>
+            <th mat-header-cell *matHeaderCellDef>&nbsp; J.M. </th>
+            <td mat-cell *matCellDef="let element">&nbsp; {{element.jednostkaMiary}} </td>
           </ng-container>
            <!-- Name Column -->
         <ng-container matColumnDef="iloscwJednostce">
-            <th mat-header-cell *matHeaderCellDef> Ilość w Jednostce </th>
-            <td mat-cell *matCellDef="let element"> {{element.iloscwJednostce}} </td>
+            <th mat-header-cell *matHeaderCellDef>&nbsp; Ilość w Jednostce </th>
+            <td mat-cell *matCellDef="let element">&nbsp; {{element.iloscwJednostce}} </td>
           </ng-container>
                     
         <!-- Weight Column -->
         <ng-container matColumnDef="akcje">
-          <th mat-header-cell *matHeaderCellDef> Akcje </th>
+          <th mat-header-cell *matHeaderCellDef>&nbsp; Akcje </th>
           <td mat-cell *matCellDef="let element"> 
 
-            &nbsp;&nbsp;&nbsp; 
+            &nbsp;
             <button (click)="zapiszKoszt(element.id)" mat-mini-fab color="accent" aria-label="Example icon button with a delete icon">
                 <mat-icon>add</mat-icon>
               </button>

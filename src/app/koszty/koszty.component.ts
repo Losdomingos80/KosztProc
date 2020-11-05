@@ -22,7 +22,7 @@ export interface DialogData {
 })
 export class KosztyComponent implements OnInit {
   
-  displayedColumns: string[] = ['identyfikator', 'nazwa', 'typ', 'wspolczynnik', 'jednostkaMiary', 'iloscJednostkowa', 'cenaBrutto', 'wklad','akcje'];
+  displayedColumns: string[] = ['identyfikator', 'nazwa', 'jednostkaMiary', 'iloscwJednostce', 'iloscJednostkowa','akcje'];
   procedura: any;
   idprocedury: any;
   pokKoszty: any;
@@ -33,6 +33,36 @@ export class KosztyComponent implements OnInit {
     console.log(this.data);
     this.pobierzKoszty();
   }
+
+  delKoszt(idPozycji: any){
+
+    if (confirm("Czy napewno usunąć tą pozycję?")) {
+      this.koszty.delKoszty(idPozycji)
+      .subscribe(response => {
+        this.pobierzKoszty();
+  
+      });
+      } else {
+      
+    } 
+   
+  }
+
+  editKoszt(idPozycji: any, wartosc: any) {
+    console.log(wartosc);
+    let ilosc: any;
+    ilosc = prompt("Podaj nową ilość", wartosc.toString());
+
+    if(ilosc){
+      this.koszty.editKoszty(idPozycji, ilosc)
+      .subscribe(response => {
+        this.pobierzKoszty();
+  
+      });
+    }
+
+  }
+
 
   pobierzKoszty(){
     this.koszty.getKoszty(this.data.idProcedury, this.data.idOddzialu)
