@@ -23,7 +23,47 @@ table {
 .spiner {
     margin-top: 100px;
     margin-left: 45%;
-   
-   
-   
+  
   }
+
+  .mat-table {
+    overflow: auto;
+    max-height: 550px;
+  }
+
+mat-cell:nth-child(1){
+    flex: 0 0 5%;
+}
+mat-header-cell:nth-child(1) {
+    flex: 0 0 5%;
+}
+
+
+mat-cell:nth-child(2){
+    flex: 0 0 5%;
+    margin-left: 7px;
+}
+mat-header-cell:nth-child(2) {
+    flex: 0 0 5%;
+    margin-left: 7px;
+}
+
+
+mat-cell:nth-child(3){
+    flex: 0 0 70%;
+    margin-left: 7px;
+}
+mat-header-cell:nth-child(3) {
+    flex: 0 0 70%;
+    margin-left: 7px;
+}
+
+
+mat-cell:nth-child(4){
+    flex: 0 0 15%;
+    margin-left: 7px;
+}
+mat-header-cell:nth-child(4) {
+    flex: 0 0 15%;
+    margin-left: 7px;
+}
