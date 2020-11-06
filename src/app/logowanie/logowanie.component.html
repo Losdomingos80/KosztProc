@@ -3,13 +3,13 @@
 
     <form class="inputt">
         <mat-form-field class="inputt">
-          <mat-label>Login</mat-label>
-          <input matInput>
+            <mat-label>Login</mat-label>
+            <input matInput (keyup)="onKeyLogin($event)">
         </mat-form-field>
         <mat-form-field class="inputt">
             <mat-label>Hasło</mat-label>
-            <input matInput type="password">
-          </mat-form-field>
+            <input matInput type="password" (keyup)="onKeyHaslo($event)">
+        </mat-form-field>
       
         
       </form>
@@ -18,9 +18,7 @@
 </div>
 <BR><BR>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()" cdkFocusInitial>Zamknij</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-    <button mat-button (click)="onNoClick()" cdkFocusInitial>OK</button>
+        <button mat-button (click)="onOKClick()" cdkFocusInitial>OK</button>
 </div>
 
 

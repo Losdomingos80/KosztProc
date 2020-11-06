@@ -10,6 +10,7 @@ import { ProceduryService } from './services/procedury.service';
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -130,8 +131,8 @@ export class AppComponent {
 
     modalDialog.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.oddzial = "Endoskopia";
-      this.idOddzialu = 1;
+      this.oddzial =result[0]["nazwa"];
+      this.idOddzialu = result[0]["idOddzialu"];
       this.pobierzProcedury();
       
     });

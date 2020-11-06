@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProceduryService {
 
-  private urlget = 'http://localhost/wkpm/KosztProcApi/procedury.php';
-  private urladd = 'http://localhost/wkpm/KosztProcApi/proceduryAdd.php';
-  private urldel = 'http://localhost/wkpm/KosztProcApi/proceduryDel.php';
-  private urledit = 'http://localhost/wkpm/KosztProcApi/proceduryEdit.php';
+  private urlget = 'http://192.168.0.4/wycenyApi/procedury.php';
+  private urladd = 'http://192.168.0.4/wycenyApi/proceduryAdd.php';
+  private urldel = 'http://192.168.0.4/wycenyApi/proceduryDel.php';
+  private urledit = 'http://192.168.0.4/wycenyApi/proceduryEdit.php';
 
   constructor(private httpClient: HttpClient) { }
 

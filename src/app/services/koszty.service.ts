@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class KosztyService {
 
-  private urlget = 'http://localhost/wkpm/KosztProcApi/koszty.php';
-  private urledit = 'http://localhost/wkpm/KosztProcApi/kosztyEdit.php';
-  private urldel = 'http://localhost/wkpm/KosztProcApi/kosztyDel.php';
+  private urlget = 'http://192.168.0.4/wycenyApi/koszty.php';
+  private urledit = 'http://192.168.0.4/wycenyApi/kosztyEdit.php';
+  private urldel = 'http://192.168.0.4/wycenyApi/kosztyDel.php';
 
 
   constructor(private httpClient: HttpClient) { }

@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import { LogowanieService } from '../services/logowanie.service';
+
 @Component({
   selector: 'app-logowanie',
   templateUrl: './logowanie.component.html',
@@ -9,14 +11,51 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class LogowanieComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<LogowanieComponent>) { }
+  login: any;
+  haslo: any;
+
+
+
+  constructor(public dialogRef: MatDialogRef<LogowanieComponent>, private log:LogowanieService) { }
 
   ngOnInit(): void {
+    this.login = '';
+    this.haslo = '';
   }
 
-  onNoClick(): void {
-    
-    this.dialogRef.close();
+  onKeyLogin(event: any) { // without type info
+    this.login = event.target.value;
   }
+
+  onKeyHaslo(event: any) { // without type info
+    this.haslo = event.target.value;
+  }
+
+
+
+  onOKClick(){
+
+    if(this.login != '' || this.haslo != ''){
+      this.log.getLogowanie(this.login, this.haslo)
+      .subscribe(response => {
+        
+          if(response[0]["status"]=="1"){
+            
+            this.dialogRef.close(response);
+          }
+          else{
+            alert("Błędny login lub hasło!");
+          }
+        });
+    }
+
+   
+          
+          
+     
+    
+  }
+
+
 
 }
