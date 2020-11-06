@@ -114,7 +114,6 @@ export class AppComponent {
 
     modalDialog.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.oddzial = "Endoskopia";
       this.pobierzProcedury();
       
     });
