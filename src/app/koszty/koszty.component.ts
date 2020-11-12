@@ -65,6 +65,9 @@ export class KosztyComponent implements OnInit {
 
 
   pobierzKoszty(){
+    console.log("dane do pobrania kosztow:");
+    console.log(this.data.idProcedury);
+    console.log(this.data.idOddzialu);
     this.koszty.getKoszty(this.data.idProcedury, this.data.idOddzialu)
     .subscribe(response => {
       this.pokKoszty = response;
