@@ -27,7 +27,8 @@ import { SlownikDialogComponent } from './slownik-dialog/slownik-dialog.componen
 import { LogowanieComponent } from './logowanie/logowanie.component';
 import { ProceduryComponent } from './procedury/procedury.component';
 import { KosztyComponent } from './koszty/koszty.component';
-import { MagazynComponent } from './magazyn/magazyn.component'; 
+import { MagazynComponent } from './magazyn/magazyn.component';
+import { CzaspracyComponent } from './czaspracy/czaspracy.component'; 
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { MagazynComponent } from './magazyn/magazyn.component';
     LogowanieComponent,
     ProceduryComponent,
     KosztyComponent,
-    MagazynComponent
+    MagazynComponent,
+    CzaspracyComponent
   ],
   imports: [
     BrowserModule,

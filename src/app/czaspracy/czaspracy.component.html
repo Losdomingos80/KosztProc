@@ -1,0 +1,16 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span>{{data.kodProcedury}}&nbsp;-&nbsp;{{data.nazwaProcedury}}</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button (click)="add()">
+            <mat-icon mat-list-icon>add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onNoClick()">
+            <mat-icon mat-list-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+  </h4>
+
+  <div *ngIf="lista">
+      <h1>tu lista pracownikow</h1>
+  </div>

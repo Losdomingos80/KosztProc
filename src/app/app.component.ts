@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { SlownikiComponent } from './slowniki/slowniki.component'; 
 import { LogowanieComponent } from './logowanie/logowanie.component'; 
 import { KosztyComponent } from './koszty/koszty.component'; 
+import { CzaspracyComponent } from './czaspracy/czaspracy.component'; 
 
 import { ProceduryService } from './services/procedury.service';
 
@@ -111,6 +112,24 @@ export class AppComponent {
     dialogConfig.data = { idProcedury: idProcedury, kodProcedury: kodProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
     // https://material.angular.io/components/dialog/overview
     const modalDialog = this.matDialog.open(KosztyComponent, dialogConfig);
+
+    modalDialog.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.pobierzProcedury();
+      
+    });
+  }
+
+  czaspracy(idProcedury: any, nazwaProcedury: any, kodProcedury: any){
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "90%";
+    dialogConfig.width = "80%";
+    dialogConfig.data = { idProcedury: idProcedury, kodProcedury: kodProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(CzaspracyComponent, dialogConfig);
 
     modalDialog.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
