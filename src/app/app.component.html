@@ -130,7 +130,8 @@
             </button>
             &nbsp;
             <button *ngIf="wybor=='przypisane'"  (click)="czaspracy(element.id, element.nazwa, element.kod)" mat-mini-fab color="accent">
-              <mat-icon>history_toggle_off</mat-icon>
+              <mat-icon *ngIf="element.pracownicy>0" matBadge="{{element.pracownicy}}" matBadgeColor="warn">history_toggle_off</mat-icon>
+              <mat-icon *ngIf="element.pracownicy==0">history_toggle_off</mat-icon>
             </button>
             &nbsp;
             <button *ngIf="wybor=='przypisane'" mat-mini-fab color="accent">

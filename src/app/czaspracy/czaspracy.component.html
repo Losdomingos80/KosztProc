@@ -12,5 +12,113 @@
   </h4>
 
   <div *ngIf="lista">
-      <h1>tu lista pracownikow</h1>
+    <div class="mat-elevation-z8">
+        <mat-table #table [dataSource]="kosztyPracownicy">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="rodzaj">
+          <mat-header-cell *matHeaderCellDef>
+            <button mat-icon-button (click)="off()">
+                <mat-icon mat-list-icon>highlight_off</mat-icon>
+            </button>  
+            Grupy pracowników</mat-header-cell>
+          
+        </ng-container>
+    
+        
+        <ng-container matColumnDef="akcje">
+          <mat-header-cell *matHeaderCellDef>Akcje</mat-header-cell>
+          
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        
+      </mat-table>
+      <mat-table #table [dataSource]="kosztyPracownicy">
+    
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="rodzaj">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.rodzaj}} </mat-cell>
+        </ng-container>
+    
+        
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="akcje">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+
+            <button (click)="addKoszt(element.id)" mat-mini-fab color="accent">
+              <mat-icon>add</mat-icon>
+            </button>
+                
+          
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns" [style.min-height]="0" ></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
   </div>
+  <br><hr><br>
+
+  <div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="kosztyPracownicyLista">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="rodzaj">
+      <mat-header-cell *matHeaderCellDef>
+            Przypisane grupy pracowników</mat-header-cell>
+      
+    </ng-container>
+
+    
+    <ng-container matColumnDef="akcje">
+      <mat-header-cell *matHeaderCellDef>Czas pracy / Akcje</mat-header-cell>
+      
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+  </mat-table>
+  <mat-table #table [dataSource]="kosztyPracownicyLista">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="rodzaj">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.rodzaj}} </mat-cell>
+    </ng-container>
+
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="akcje">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        {{element.iloscJednostkowa}} minut &nbsp;&nbsp;
+        <button (click)="editKoszt(element.id, element.iloscJednostkowa)" mat-mini-fab color="accent">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button (click)="delKoszt(element.id)" mat-mini-fab color="accent">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+            
+      
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" [style.min-height]="0" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
