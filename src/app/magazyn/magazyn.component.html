@@ -80,7 +80,7 @@
       <!-- Weight Column -->
       <ng-container matColumnDef="cenaBrutto">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.cenaBrutto}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.cenaBrutto | currency: ' '}} </mat-cell>
       </ng-container>
   
       <!-- Symbol Column -->

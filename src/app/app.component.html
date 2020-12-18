@@ -12,9 +12,9 @@
     <mat-icon>input</mat-icon>
     <span>Logowanie</span>
   </button>
-  <button mat-menu-item (click)="slowniki()">
+  <button mat-menu-item (click)="slowniki()" *ngIf="idOddzialu==18">
     <mat-icon>input</mat-icon>
-    <span>Słowniki</span>
+    <span>Koszty Czasu Pracy</span>
   </button>
   <button mat-menu-item>
     <mat-icon>input</mat-icon>

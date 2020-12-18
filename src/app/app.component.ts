@@ -161,8 +161,8 @@ export class AppComponent {
       // The user can't close the dialog by clicking outside its body
       dialogConfig.disableClose = true;
       dialogConfig.id = "modal-component";
-      dialogConfig.height = "70%";
-      dialogConfig.width = "60%";
+      dialogConfig.height = "90%";
+      dialogConfig.width = "80%";
       // https://material.angular.io/components/dialog/overview
       const modalDialog = this.matDialog.open(SlownikiComponent, dialogConfig);
     

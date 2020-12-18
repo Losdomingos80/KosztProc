@@ -11,6 +11,8 @@ export class CzaspracyService {
   private url = 'http://192.168.0.4/wycenyApi/czasKosztyPracownicy.php';
   private urledit = 'http://192.168.0.4/wycenyApi/czasKosztyEdit.php';
   private urldel = 'http://192.168.0.4/wycenyApi/czasKosztyDel.php'
+  private czaspracyget = 'http://192.168.0.4/wycenyApi/pokazkosztprac.php';
+  private czaspracysave = 'http://192.168.0.4/wycenyApi/zapiszkosztprac.php';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -48,6 +50,19 @@ export class CzaspracyService {
     const postData = new FormData();
     postData.append('id', id);
     return this.httpClient.post(this.urldel, postData);
+  }
+
+  getKosztCzasPracy(){
+    const postData = new FormData();
+    return this.httpClient.get(this.czaspracyget);
+  }
+
+  saveKosztyPracownicy(idOddzialu: any, idPracownika: any, kosztgodziny: any){
+    const postData = new FormData();
+    postData.append('idOddzialu', idOddzialu);
+    postData.append('idPracownika', idPracownika);
+    postData.append('kosztgodziny', kosztgodziny);
+    return this.httpClient.post(this.czaspracysave, postData);
   }
 
 }
