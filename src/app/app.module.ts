@@ -28,7 +28,8 @@ import { LogowanieComponent } from './logowanie/logowanie.component';
 import { ProceduryComponent } from './procedury/procedury.component';
 import { KosztyComponent } from './koszty/koszty.component';
 import { MagazynComponent } from './magazyn/magazyn.component';
-import { CzaspracyComponent } from './czaspracy/czaspracy.component'; 
+import { CzaspracyComponent } from './czaspracy/czaspracy.component';
+import { WycenaprocComponent } from './wycenaproc/wycenaproc.component'; 
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { CzaspracyComponent } from './czaspracy/czaspracy.component';
     ProceduryComponent,
     KosztyComponent,
     MagazynComponent,
-    CzaspracyComponent
+    CzaspracyComponent,
+    WycenaprocComponent
   ],
   imports: [
     BrowserModule,

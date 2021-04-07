@@ -1,0 +1,148 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span>Podsumowanie kosztów</span>
+        <span class="fx-spacer"></span>
+        <button mat-icon-button (click)="closeModal()">
+            <mat-icon mat-list-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+  </h4>
+    <p> {{data.kod}} - {{data.nazwa}} </p> 
+  <BR>
+    <p>Koszty materiałowe</p>
+    <div class="mat-elevation-z8">
+      <mat-table #table [dataSource]="pokKoszty">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="identyfikator">
+        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+        
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="nazwa">
+        <mat-header-cell  style="flex: 0 0 50%; margin-left: 7px;" *matHeaderCellDef>Nazwa</mat-header-cell>
+        
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="jednostkaMiary">
+        <mat-header-cell *matHeaderCellDef>Jm</mat-header-cell> 
+        
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="iloscwJednostce">
+        <mat-header-cell *matHeaderCellDef>Ilosc w Jm</mat-header-cell>
+        
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="iloscJednostkowa">
+        <mat-header-cell *matHeaderCellDef>Ilosc zużyta</mat-header-cell>
+       
+      </ng-container>
+      <ng-container matColumnDef="koszt">
+        <mat-header-cell *matHeaderCellDef>Koszt jedn</mat-header-cell>
+        
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      
+    </mat-table>
+    <mat-table #table [dataSource]="pokKoszty">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="identyfikator">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.identyfikator}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="nazwa">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell style="flex: 0 0 50%; margin-left: 7px;" *matCellDef="let element"> {{element.nazwa}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="jednostkaMiary">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.jednostkaMiary}} </mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="iloscwJednostce">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.iloscwJednostce}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="iloscJednostkowa">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.iloscJednostkowa  | currency: ' '}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="koszt">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+
+          
+          {{element.koszt  | currency: ' '}}&nbsp;PLN
+        
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns" [style.min-height]="0" ></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+  <br>
+  <p class="lewo">Koszty materiałów : {{sumMat  | currency: ' '}}&nbsp;PLN</p>
+  <p>Koszty pracy</p>
+
+  <mat-table #table [dataSource]="kosztyPracownicyLista">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="rodzaj">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell style="flex: 0 0 80%; margin-left: 7px;" *matCellDef="let element"> {{element.rodzaj}} </mat-cell>
+    </ng-container>
+
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="ile">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        {{element.iloscJednostkowa}} minut &nbsp;&nbsp;
+        
+        
+      
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="koszt">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        
+        {{element.koszt | currency: ' '}}&nbsp;PLN
+        
+      
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns1" [style.min-height]="0" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+  </mat-table>
+  <br>
+  <p class="lewo">Koszty pracownicze : {{sumPrac  | currency: ' '}}&nbsp;PLN</p><br>
+  <h2 class="lewo">Koszty razem : {{sumRaz  | currency: ' '}}&nbsp;PLN</h2>
+
+   

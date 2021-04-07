@@ -134,7 +134,7 @@
               <mat-icon *ngIf="element.pracownicy==0">history_toggle_off</mat-icon>
             </button>
             &nbsp;
-            <button *ngIf="wybor=='przypisane'" mat-mini-fab color="accent">
+            <button *ngIf="wybor=='przypisane'" (click)="wycenaprocedur(element.id, this.idOddzialu, element.nazwa, element.kod)" mat-mini-fab color="accent">
               <mat-icon>fact_check</mat-icon>
             </button>
             &nbsp;

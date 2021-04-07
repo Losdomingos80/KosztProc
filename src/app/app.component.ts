@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { SlownikiComponent } from './slowniki/slowniki.component'; 
 import { LogowanieComponent } from './logowanie/logowanie.component'; 
 import { KosztyComponent } from './koszty/koszty.component'; 
 import { CzaspracyComponent } from './czaspracy/czaspracy.component'; 
+import { WycenaprocComponent } from './wycenaproc/wycenaproc.component'; 
 
 import { ProceduryService } from './services/procedury.service';
 
@@ -41,8 +42,10 @@ export class AppComponent {
     this.tabelka = false;
   }
 
+  
   tabela(){
     this.tabelka = true;
+    //this.oddzial = false;
   }
 
   start() {
@@ -97,6 +100,8 @@ export class AppComponent {
       });
   }
 
+
+
   applyFilter(event: Event) {
     this.filterValue = (event.target as HTMLInputElement).value;
     this.procedury.filter = this.filterValue.trim().toLowerCase();
@@ -104,35 +109,53 @@ export class AppComponent {
 
   koszty(idProcedury: any, nazwaProcedury: any, kodProcedury: any){
     const dialogConfig = new MatDialogConfig();
-    // The user can't close the dialog by clicking outside its body
+    
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "90%";
     dialogConfig.width = "80%";
     dialogConfig.data = { idProcedury: idProcedury, kodProcedury: kodProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
-    // https://material.angular.io/components/dialog/overview
+   
     const modalDialog = this.matDialog.open(KosztyComponent, dialogConfig);
 
     modalDialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('okienko zostało zamknięte');
       this.pobierzProcedury();
+      
+    });
+  }
+
+  wycenaprocedur(procedura: any, oddzial: any, nazwa: any, kod: any){
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "90%";
+    dialogConfig.width = "80%";
+    dialogConfig.data = { idProcedury: procedura, idOddzialu: oddzial, nazwa: nazwa, kod: kod };
+    
+    const modalDialog = this.matDialog.open(WycenaprocComponent, dialogConfig);
+
+    modalDialog.afterClosed().subscribe(result => {
+      console.log('okienko zostało zamkniete');
+      
       
     });
   }
 
   czaspracy(idProcedury: any, nazwaProcedury: any, kodProcedury: any){
     const dialogConfig = new MatDialogConfig();
-    // The user can't close the dialog by clicking outside its body
+    
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.height = "90%";
     dialogConfig.width = "80%";
     dialogConfig.data = { idProcedury: idProcedury, kodProcedury: kodProcedury, nazwaProcedury: nazwaProcedury, idOddzialu: this.idOddzialu };
-    // https://material.angular.io/components/dialog/overview
+    
     const modalDialog = this.matDialog.open(CzaspracyComponent, dialogConfig);
 
     modalDialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('okienko zostało zamkniete');
       this.pobierzProcedury();
       
     });
@@ -140,15 +163,16 @@ export class AppComponent {
 
   logowanie() {
     const dialogConfig = new MatDialogConfig();
-    // The user can't close the dialog by clicking outside its body
+    
     dialogConfig.disableClose = true;
     dialogConfig.id = "modal-component";
     dialogConfig.width = "30%";
-    // https://material.angular.io/components/dialog/overview
+    
+    
     const modalDialog = this.matDialog.open(LogowanieComponent, dialogConfig);
 
     modalDialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('okienko zostało zmkniete');
       this.oddzial =result[0]["nazwa"];
       this.idOddzialu = result[0]["idOddzialu"];
       this.pobierzProcedury();
@@ -158,12 +182,12 @@ export class AppComponent {
 
   slowniki(){
       const dialogConfig = new MatDialogConfig();
-      // The user can't close the dialog by clicking outside its body
+      
       dialogConfig.disableClose = true;
       dialogConfig.id = "modal-component";
       dialogConfig.height = "90%";
       dialogConfig.width = "80%";
-      // https://material.angular.io/components/dialog/overview
+      
       const modalDialog = this.matDialog.open(SlownikiComponent, dialogConfig);
     
   }
