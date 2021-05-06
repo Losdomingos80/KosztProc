@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import { MatSelectModule} from '@angular/material/select/';
+import {MatSelectModule} from '@angular/material/select/';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatMenuModule} from '@angular/material/menu'; 
@@ -29,7 +29,8 @@ import { ProceduryComponent } from './procedury/procedury.component';
 import { KosztyComponent } from './koszty/koszty.component';
 import { MagazynComponent } from './magazyn/magazyn.component';
 import { CzaspracyComponent } from './czaspracy/czaspracy.component';
-import { WycenaprocComponent } from './wycenaproc/wycenaproc.component'; 
+import { WycenaprocComponent } from './wycenaproc/wycenaproc.component';
+import { WykonaniaComponent } from './wykonania/wykonania.component'; 
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { WycenaprocComponent } from './wycenaproc/wycenaproc.component';
     KosztyComponent,
     MagazynComponent,
     CzaspracyComponent,
-    WycenaprocComponent
+    WycenaprocComponent,
+    WykonaniaComponent
   ],
   imports: [
     BrowserModule,

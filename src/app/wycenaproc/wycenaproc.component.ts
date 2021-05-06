@@ -38,7 +38,7 @@ export class WycenaprocComponent implements OnInit {
     this.pobierzKosztyMat();
     
   }
-
+//nie korzystac po starcie
   closeModal() {
     this.dialogRef.close();
   }

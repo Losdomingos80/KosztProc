@@ -16,22 +16,11 @@
     <mat-icon>input</mat-icon>
     <span>Koszty Czasu Pracy</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="wykonania()">
     <mat-icon>input</mat-icon>
-    <span>Jednostki</span>
+    <span>Wykonania Proc</span>
   </button>
-  <button mat-menu-item>
-    <mat-icon>input</mat-icon>
-    <span>Oddziały</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>input</mat-icon>
-    <span>Procedury</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>input</mat-icon>
-    <span>Materiały</span>
-  </button>
+ 
 </mat-menu>
 <br>
 <mat-card *ngIf="oddzial">

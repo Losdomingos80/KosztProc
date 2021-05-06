@@ -7,7 +7,7 @@ import { LogowanieComponent } from './logowanie/logowanie.component';
 import { KosztyComponent } from './koszty/koszty.component'; 
 import { CzaspracyComponent } from './czaspracy/czaspracy.component'; 
 import { WycenaprocComponent } from './wycenaproc/wycenaproc.component'; 
-
+import { WykonaniaComponent } from './wykonania/wykonania.component';
 import { ProceduryService } from './services/procedury.service';
 
 
@@ -33,6 +33,7 @@ export class AppComponent {
   idOddzialu: any;
   wybor: any;
   filterValue: any;
+  procwyk: any;
 
   constructor(public matDialog: MatDialog, private proc:ProceduryService) {
     this.start();
@@ -94,6 +95,7 @@ export class AppComponent {
     this.proc.getProcedury(this.wybor, this.idOddzialu)
       .subscribe(response => {
           this.procedury = response;
+          this.procwyk = this.procedury;
           this.procedury = new MatTableDataSource(this.procedury);
           this.procedury.filter = this.filterValue.trim().toLowerCase();
           this.tabela();
@@ -190,6 +192,24 @@ export class AppComponent {
       
       const modalDialog = this.matDialog.open(SlownikiComponent, dialogConfig);
     
+  }
+
+  wykonania(){
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "90%";
+    dialogConfig.width = "80%";
+    dialogConfig.data = { procedury: this.procwyk, idOddzialu: this.idOddzialu };
+    
+    const modalDialog = this.matDialog.open(WykonaniaComponent, dialogConfig);
+
+    modalDialog.afterClosed().subscribe(result => {
+      console.log('okienko zostało zamkniete');
+      this.pobierzProcedury();
+      
+    });
   }
 
 

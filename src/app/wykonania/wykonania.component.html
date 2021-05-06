@@ -1,0 +1,101 @@
+<h4 mat-dialog-title>
+    <mat-toolbar role="toolbar" class="task-header">
+        <span>Raportowanie wykonania proc. med. ICD9</span>
+        <span class="fx-spacer"></span>
+        
+        <button mat-icon-button (click)="close()">
+            <mat-icon mat-list-icon>close</mat-icon>
+        </button>
+    </mat-toolbar>
+  </h4>
+
+Wybierz Oddział zlecający wykonanie
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>list</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let od of oddzialy" (click)="wybrodd(od.id, od.nazwa)">
+            <span>{{od.nazwa}}</span>
+    </button>
+  </mat-menu>
+  {{wybranyOddzial}}
+  <br>
+
+  <span>
+    <mat-form-field>
+      <mat-label>Filtr</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="do wyszukania" #input>
+    </mat-form-field>
+  </span>
+
+  <div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="procedury">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+    </ng-container>
+    <ng-container matColumnDef="kod">
+      <mat-header-cell *matHeaderCellDef>Kod</mat-header-cell>
+    </ng-container>
+    <ng-container matColumnDef="nazwa">
+      <mat-header-cell *matHeaderCellDef>Nazwa</mat-header-cell>
+    </ng-container>
+    <ng-container matColumnDef="akcje">
+      <mat-header-cell *matHeaderCellDef>Akcje</mat-header-cell>
+      
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    
+  </mat-table>
+  <mat-table #table [dataSource]="procedury">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kod">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.kod}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nazwa">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nazwa}} </mat-cell>
+    </ng-container>
+
+    
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="akcje">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+
+        <button (click)="addProc(element.id)" mat-mini-fab color="accent">
+          <mat-icon>add</mat-icon>
+        </button>
+       
+      
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" [style.min-height]="0" ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<h2>Zgłoszone wykonania:</h2>
+<div *ngFor="let wy of wykonania">
+<span>{{wy.dlaoddzialu}}</span>
+<span>&nbsp;&nbsp;&nbsp;</span>
+<span>kod.proc. {{wy.kod}}</span>
+<span>&nbsp;&nbsp;&nbsp;</span>
+<span>ilość {{wy.ilosc}}</span>
+
+</div>

@@ -10,6 +10,9 @@ export class ProceduryService {
   private urladd = 'http://192.168.0.4/wycenyApi/proceduryAdd.php';
   private urldel = 'http://192.168.0.4/wycenyApi/proceduryDel.php';
   private urledit = 'http://192.168.0.4/wycenyApi/proceduryEdit.php';
+  private wyk = 'http://192.168.0.4/wycenyApi/wykonanie.php';
+  private odd = 'http://192.168.0.4/wycenyApi/oddzialy.php';
+  private wyka = 'http://192.168.0.4/wycenyApi/wykonania.php';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -35,4 +38,28 @@ export class ProceduryService {
     return this.httpClient.post(this.urldel, postData);
   }
 
+  addWykonanie(idoddzialuwykonujacego: any, iddlaoddzialu: any, idprocedury: any, ilosc: any, data: any){
+    const postData = new FormData();
+    postData.append('idoddzialuwykonujacego', idoddzialuwykonujacego);
+    postData.append('iddlaoddzialu', iddlaoddzialu);
+    postData.append('idprocedury', idprocedury);
+    postData.append('ilosc', ilosc);
+    postData.append('data', data);
+    return this.httpClient.post(this.wyk, postData);
+  }
+
+  getOddzialy(){
+    const postData = new FormData();
+    postData.append('wybor', '1');
+    postData.append('idOddzialu', '1');
+    return this.httpClient.post(this.odd, postData);
+
+  }
+
+  getWykonania(id: any){
+    const postData = new FormData();
+    postData.append('idOddzialu', id);
+    return this.httpClient.post(this.wyka, postData);
+
+  }
 }
