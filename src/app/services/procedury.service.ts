@@ -13,6 +13,7 @@ export class ProceduryService {
   private wyk = 'http://192.168.0.4/wycenyApi/wykonanie.php';
   private odd = 'http://192.168.0.4/wycenyApi/oddzialy.php';
   private wyka = 'http://192.168.0.4/wycenyApi/wykonania.php';
+  private wykd = 'http://192.168.0.4/wycenyApi/wykonanieDel.php';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -60,6 +61,13 @@ export class ProceduryService {
     const postData = new FormData();
     postData.append('idOddzialu', id);
     return this.httpClient.post(this.wyka, postData);
+
+  }
+
+  delWykonanie(id: any){
+    const postData = new FormData();
+    postData.append('id', id);
+    return this.httpClient.post(this.wykd, postData);
 
   }
 }

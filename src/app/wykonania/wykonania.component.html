@@ -20,6 +20,7 @@ Wybierz Oddział zlecający wykonanie
   </mat-menu>
   {{wybranyOddzial}}
   <br>
+  <!--- tu dodać miesiąc za który robiony jest raport -->
 
   <span>
     <mat-form-field>
@@ -97,5 +98,8 @@ Wybierz Oddział zlecający wykonanie
 <span>kod.proc. {{wy.kod}}</span>
 <span>&nbsp;&nbsp;&nbsp;</span>
 <span>ilość {{wy.ilosc}}</span>
+<span><button mat-icon-button (click)="delWyk(wy.id)">
+  <mat-icon mat-list-icon>close</mat-icon>
+</button></span>
 
 </div>

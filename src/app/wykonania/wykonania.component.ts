@@ -72,17 +72,38 @@ export class WykonaniaComponent implements OnInit {
   }
   
   addProc(id: any){
-    let ilosc: any;
-    ilosc = prompt("Podaj ilość wykonań");
-    if(ilosc){
-      console.log(ilosc);
+    if(this.wybranyOddzialid > 0){
+      let ilosc: any;
+      ilosc = prompt("Podaj ilość wykonań");
+      if(ilosc){
+        console.log(ilosc);
+        console.log(id);
+        this.proc.addWykonanie(this.data.idOddzialu, this.wybranyOddzialid, id, ilosc, "2021-03-01")
+        .subscribe(response => {
+          console.log('wyslano');
+          this.getWykonania();
+        });
+      }
+
+    }
+    else {
+      alert("Nie wybrano Oddziału");
+    }
+
+   
+    
+  }
+
+  delWyk(id: any){
+    
       console.log(id);
-      this.proc.addWykonanie(this.data.idOddzialu, this.wybranyOddzialid, id, ilosc, "2021-03-01")
+      this.proc.delWykonanie(id)
       .subscribe(response => {
         console.log('wyslano');
         this.getWykonania();
       });
-    }
+    
     
   }
+
 }
