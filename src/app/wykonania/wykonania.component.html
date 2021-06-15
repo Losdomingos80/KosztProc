@@ -21,6 +21,17 @@ Wybierz Oddział zlecający wykonanie
   {{wybranyOddzial}}
   <br>
   <!--- tu dodać miesiąc za który robiony jest raport -->
+  Wybierz miesiąc rozliczeniowy
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>list</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let od of oddzialy" (click)="wybrodd(od.id, od.nazwa)">
+            <span>{{od.nazwa}}</span>
+    </button>
+  </mat-menu>
+  {{wybranyOddzial}}
+  <br>
 
   <span>
     <mat-form-field>
