@@ -21,7 +21,7 @@ export class LogowanieComponent implements OnInit {
   ngOnInit(): void {
     this.login = '';
     this.haslo = '';
-    console.
+    
   }
 
   onKeyLogin(event: any) { // without type info
