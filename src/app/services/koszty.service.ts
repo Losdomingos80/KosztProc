@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,6 @@ export class KosztyService {
     const postData = new FormData();
     postData.append('idProcedury', idProcedury);
     postData.append('idOddzialu', idOddzialu);
-
-
     return this.httpClient.post(this.urlget, postData);
 
   }
@@ -28,8 +27,6 @@ export class KosztyService {
     const postData = new FormData();
     postData.append('id', id);
     postData.append('iloscJednostkowa', ilosc);
-
-
     return this.httpClient.post(this.urledit, postData);
 
   }
@@ -37,9 +34,10 @@ export class KosztyService {
   delKoszty(id: any){
     const postData = new FormData();
     postData.append('id', id);
-    
     return this.httpClient.post(this.urldel, postData);
 
   }
 
 }
+
+

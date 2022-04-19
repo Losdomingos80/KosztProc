@@ -32,6 +32,7 @@ export class KosztyComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data);
     this.pobierzKoszty();
+    console.log("koszty start");
   }
 
   delKoszt(idPozycji: any){
@@ -57,7 +58,7 @@ export class KosztyComponent implements OnInit {
       this.koszty.editKoszty(idPozycji, ilosc)
       .subscribe(response => {
         this.pobierzKoszty();
-  
+        console.log("edycja kosztow");
       });
     }
 

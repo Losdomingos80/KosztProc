@@ -17,8 +17,9 @@ export class MagazynService {
     const postData = new FormData();
     postData.append('idProcedury', idProcedury);
     postData.append('idOddzialu', idOddzialu);
+    console.log("pobranie magazynu");
     return this.httpClient.post(this.urlget, postData);
-
+    
   }
 
   addMagazyn(idProcedury: any, idOddzialu: any, idMaterialu: any, iloscJednostkowa: any){
@@ -27,7 +28,8 @@ export class MagazynService {
     postData.append('idOddzialu', idOddzialu);
     postData.append('idMaterialu', idMaterialu);
     postData.append('iloscJednostkowa', iloscJednostkowa);
-
+    console.log("dodanie do magazynu");
+    
     return this.httpClient.post(this.urladd, postData);
 
   }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-
 import { SlownikiComponent } from './slowniki/slowniki.component'; 
 import { LogowanieComponent } from './logowanie/logowanie.component'; 
 import { KosztyComponent } from './koszty/koszty.component'; 
