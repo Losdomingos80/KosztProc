@@ -62,7 +62,7 @@ export class KosztyComponent implements OnInit {
     }
 
   }
-
+//
 
   pobierzKoszty(){
     console.log("dane do pobrania kosztow:");
